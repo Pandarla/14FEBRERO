@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Karla ❤️</title>
+
+<!-- FAVICON CORAZON -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --heart-size:120px;
+  --heart-color:#ff3b5c;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  color:#fff;
+  transition:.4s;
+}
+
+body.night{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+}
+
+/* LUZ */
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:-50%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,182,193,.25), transparent 40%);
+  animation:light 12s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes light{
+  50%{transform:translate(80px,60px)}
+}
+
+/* CONTENEDOR */
+
+.container{
+  width:95%;
+  max-width:520px;
+  padding:25px;
+  background:rgba(255,255,255,.15);
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+  text-align:center;
+  position:relative;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+/* BOTON NOCHE */
+
+.night-btn{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:rgba(255,255,255,.2);
+  border:none;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* TEXTO */
+
+h1{
+  font-size:clamp(1.6rem,5vw,2rem);
+  margin-bottom:15px;
+}
+
+p{
+  font-size:1rem;
+  margin-bottom:20px;
+}
+
+/* CORAZON */
+
+.heart-btn{
+  --scale:.35;
+
+  width:var(--heart-size);
+  height:var(--heart-size);
+
+  background:var(--heart-color);
+
+  position:relative;
+
+  transform:
+    rotate(-45deg)
+    scale(var(--scale));
+
+  margin:20px auto;
+  cursor:pointer;
+
+  transition:.25s;
+
+  animation:pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse{
+  from{filter:drop-shadow(0 0 5px #ff8fab)}
+  to{filter:drop-shadow(0 0 25px #ff4d6d)}
+}
+
+.heart-btn::before,
+.heart-btn::after{
+  content:'';
+  width:var(--heart-size);
+  height:var(--heart-size);
+  background:var(--heart-color);
+  border-radius:50%;
+  position:absolute;
+}
+
+.heart-btn::before{
+  top:-50%;
+  left:0;
+}
+
+.heart-btn::after{
+  left:50%;
+  top:0;
+}
+
+/* EXPLOSION */
+
+.heart-btn.explode{
+  animation:explode 1s forwards;
+}
+
+@keyframes explode{
+  40%{transform:rotate(-45deg) scale(4)}
+  100%{opacity:0;transform:rotate(-45deg) scale(8)}
+}
+
+/* FINAL */
+
+.final-screen{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  animation:fade 1.5s forwards;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(30px)}
+}
+
+/* FOTO */
+
+.photo-box{
+  perspective:1200px;
+  width:100%;
+  max-width:300px;
+  margin:15px auto;
+}
+
+.photo-card{
+  width:100%;
+  height:420px;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:.8s cubic-bezier(.68,-0.55,.27,1.55);
+  cursor:pointer;
+}
+
+.photo-card.flip{
+  transform:rotateY(180deg) scale(1.1);
+}
+
+.photo-front,
+.photo-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:15px;
+  backface-visibility:hidden;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* FRENTE */
+
+.photo-front{
+  object-fit:cover;
+}
+
+/* ATRAS */
+
+.photo-back{
+  background:#fff;
+  color:#333;
+  transform:rotateY(180deg);
+  flex-direction:column;
+  gap:10px;
+  padding:20px;
+}
+
+.photo-back img{
+  width:110px;
+}
+
+/* TEXTO */
+
+.typewriter{
+  min-height:90px;
+  margin-top:10px;
+}
+
+.signature{
+  margin-top:15px;
+  font-weight:600;
+}
+
+/* CORAZONES */
+
+.floating-heart,
+.falling-heart{
+  position:fixed;
+  font-size:20px;
+}
+
+.floating-heart{
+  animation:float 4s linear forwards;
+}
+
+@keyframes float{
+  to{opacity:0;transform:translateY(-200px) scale(1.5)}
+}
+
+.falling-heart{
+  top:-20px;
+  animation:fall 5s linear forwards;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0}
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  :root{
+    --heart-size:95px;
+  }
+
+  .photo-card{
+    height:360px;
+  }
+
+  h1{
+    font-size:1.5rem;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="start-screen">
+
+<button class="night-btn" id="nightBtn">🌙</button>
+
+<h1>Para Karla ❤️</h1>
+
+<p>Presiona el corazón varias veces.</p>
+
+<div class="heart-btn" id="heart"></div>
+
+<div>
+Pulsaciones: <span id="count">0</span> / 24
+</div>
+
+</div>
+
+<!-- FINAL -->
+
+<div class="final-screen" id="final">
+
+<h2>Te Amo Mucho 💖</h2>
+
+<div class="photo-box">
+
+<div class="photo-card" id="photoCard">
+
+<img src="imagen.png" class="photo-front">
+
+<div class="photo-back">
+
+<img src="rei.png">
+
+<p>Rei también nos quiere mucho 💞</p>
+
+</div>
+
+</div>
+
+</div>
+
+<p class="typewriter" id="loveText"></p>
+
+<div class="signature">
+Con amor, Sergio ❤️
+</div>
+
+</div>
+
+<audio id="bgMusic" src="cancion.mp3" loop></audio>
+
+</div>
+
+<script>
+
+const heart=document.getElementById('heart');
+const countText=document.getElementById('count');
+const startScreen=document.getElementById('start-screen');
+const finalScreen=document.getElementById('final');
+const nightBtn=document.getElementById('nightBtn');
+const music=document.getElementById('bgMusic');
+const photoCard=document.getElementById('photoCard');
+const loveText=document.getElementById('loveText');
+
+let count=0;
+const maxClicks=24;
+
+let scale=.35;
+const maxScale=1.6;
+const step=(maxScale-scale)/maxClicks;
+
+heart.style.setProperty('--scale',scale);
+
+music.volume=0.5;
+
+/* MUSICA */
+
+document.addEventListener('click',()=>{
+  if(music.paused){
+    music.play().catch(()=>{});
+  }
+},{once:true});
+
+/* NOCHE */
+
+nightBtn.onclick=()=>{
+  document.body.classList.toggle('night');
+}
+
+/* FOTO */
+
+photoCard.onclick=()=>{
+  photoCard.classList.toggle('flip');
+}
+
+/* CORAZON */
+
+heart.onclick=()=>{
+
+  if(count>=maxClicks) return;
+
+  count++;
+  countText.textContent=count;
+
+  scale+=step;
+  heart.style.setProperty('--scale',scale.toFixed(3));
+
+  createFloating();
+
+  if(count>=maxClicks) explode();
+};
+
+function explode(){
+
+  heart.classList.add('explode');
+
+  setTimeout(()=>{
+    startScreen.style.display='none';
+    finalScreen.style.display='flex';
+    rain();
+    type();
+  },900);
+}
+
+/* TEXTO */
+
+const message=`Gracias por estar conmigo,
+por tu apoyo y tu amor.
+Cada momento contigo es un regalo.
+Te amo 💖`;
+
+let i=0;
+
+function type(){
+
+  if(i<message.length){
+
+    loveText.textContent+=message[i];
+    i++;
+
+    setTimeout(type,40);
+  }
+}
+
+/* CORAZONES */
+
+function createFloating(){
+
+  const h=document.createElement('div');
+  h.className='floating-heart';
+  h.textContent='❤️';
+
+  h.style.left=Math.random()*100+'vw';
+  h.style.bottom='0';
+
+  document.body.appendChild(h);
+
+  setTimeout(()=>h.remove(),4000);
+}
+
+function rain(){
+
+  const i=setInterval(()=>{
+
+    const h=document.createElement('div');
+    h.className='falling-heart';
+    h.textContent='💖';
+
+    h.style.left=Math.random()*100+'vw';
+
+    document.body.appendChild(h);
+
+    setTimeout(()=>h.remove(),5000);
+
+  },160);
+
+  setTimeout(()=>clearInterval(i),12000);
+}
+
+</script>
+
+</body>
+</html>
