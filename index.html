@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Karla ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  color:#fff;
+  transition:background .5s ease;
+}
+
+/* LUZ ROMANTICA */
+body::before{
+  content:'';
+  position:fixed;
+  inset:-50%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,182,193,.25), transparent 40%);
+  animation:lightMove 12s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes lightMove{
+  0%{transform:translate(0,0)}
+  50%{transform:translate(80px,60px)}
+  100%{transform:translate(0,0)}
+}
+
+body.night{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+}
+
+.container{
+  text-align:center;
+  max-width:520px;
+  width:95%;
+  padding:25px 20px;
+  background:rgba(255,255,255,.15);
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+  position:relative;
+  z-index:2;
+}
+
+/* TITULOS */
+
+h1{
+  font-size:clamp(1.6rem,5vw,2rem);
+  margin-bottom:15px;
+  font-weight:600;
+}
+
+p{
+  font-size:clamp(1rem,4vw,1.1rem);
+  margin-bottom:20px;
+  line-height:1.6;
+}
+
+/* BOTON NOCHE */
+
+.night-btn{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:rgba(255,255,255,.2);
+  border:none;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:.8rem;
+}
+
+/* CORAZON */
+
+.heart-btn{ --scale:.35; width:120px; height:120px; background:#ff3b5c; position:relative; transform:rotate(-45deg) scale(var(--scale)); margin:0 auto; cursor:pointer; transition:transform .25s ease,filter .2s; animation:glowPulse 1.5s infinite alternate; }
+
+@keyframes glowPulse{
+  from{filter:drop-shadow(0 0 5px #ff8fab)}
+  to{filter:drop-shadow(0 0 25px #ff4d6d)}
+}
+
+.heart-btn::before, .heart-btn::after{ content:''; width:120px; height:120px; background:#ff3b5c; border-radius:50%; position:absolute; } .heart-btn::before{top:-60px;left:0} .heart-btn::after{left:60px;top:0}
+
+
+/* EXPLOSION */
+
+.heart-btn.explode{
+  animation:megaExplode 1s ease forwards;
+}
+
+@keyframes megaExplode{
+  0%{opacity:1;transform:rotate(-45deg) scale(var(--scale))}
+  40%{transform:rotate(-45deg) scale(4)}
+  100%{opacity:0;transform:rotate(-45deg) scale(8)}
+}
+
+.counter{
+  margin-top:12px;
+}
+
+/* FINAL */
+
+.final-screen{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  animation:fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1}
+}
+
+/* FOTO */
+
+.photo-box{
+  perspective:1200px;
+  width:100%;
+  max-width:320px;
+  margin:15px auto;
+}
+
+.photo-card{
+  position:relative;
+  width:100%;
+  height:430px;
+  transform-style:preserve-3d;
+  transition:transform .8s cubic-bezier(.68,-0.55,.27,1.55);
+  cursor:pointer;
+  box-shadow:0 15px 30px rgba(0,0,0,.25);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* REBOTE */
+.photo-card.flip{
+  transform:rotateY(180deg) scale(1.12);
+}
+
+/* CARAS */
+
+.photo-front,
+.photo-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* FRENTE */
+
+.photo-front{
+  object-fit:cover;
+}
+
+/* ATRAS */
+
+.photo-back{
+  background:#fff;
+  color:#333;
+  transform:rotateY(180deg);
+  flex-direction:column;
+  gap:12px;
+  padding:20px;
+}
+
+/* REI */
+
+.photo-back img{
+  width:120px;
+  animation:reiZoom 1.2s ease forwards;
+}
+
+@keyframes reiZoom{
+  from{transform:scale(.5);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+.photo-back p{
+  font-weight:600;
+}
+
+/* TEXTO ESCRIBIENDO */
+
+.typewriter{
+  min-height:90px;
+}
+
+/* FIRMA */
+
+.signature{
+  margin-top:15px;
+  font-weight:600;
+}
+
+/* CORAZONES */
+
+.floating-heart{
+  position:fixed;
+  font-size:20px;
+  animation:floatUp 4s linear forwards;
+}
+
+@keyframes floatUp{
+  to{opacity:0;transform:translateY(-200px) scale(1.5)}
+}
+
+.falling-heart{
+  position:fixed;
+  top:-20px;
+  animation:fall 5s linear forwards;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0}
+}
+
+@media(max-width:600px){
+  .heart-btn{width:100px;height:100px}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- INICIO -->
+
+<div id="start-screen">
+
+<button class="night-btn" id="nightBtn">🌙</button>
+
+<h1>Para Karla ❤️</h1>
+
+<p>Presiona el corazón varias veces para descubrir tu sorpresa.</p>
+
+<div class="heart-btn" id="heart"></div>
+
+<div class="counter">
+Pulsaciones: <span id="count">0</span> / 24
+</div>
+
+</div>
+
+<!-- FINAL -->
+
+<div class="final-screen" id="final">
+
+<h2>Te Amo Mucho 💖</h2>
+
+<div class="photo-box">
+
+<div class="photo-card" id="photoCard">
+
+<img src="imagen.png" class="photo-front">
+
+<div class="photo-back">
+
+<img src="rei.png">
+
+<p>Rei también nos quiere mucho 💞</p>
+
+</div>
+
+</div>
+
+</div>
+
+<p class="typewriter" id="loveText"></p>
+
+<div class="signature">
+Con amor, Sergio ❤️
+</div>
+
+</div>
+
+<audio id="bgMusic" src="cancion.mp3" loop></audio>
+
+</div>
+
+<script>
+
+const heart=document.getElementById('heart');
+const countText=document.getElementById('count');
+const startScreen=document.getElementById('start-screen');
+const finalScreen=document.getElementById('final');
+const nightBtn=document.getElementById('nightBtn');
+const music=document.getElementById('bgMusic');
+const photoCard=document.getElementById('photoCard');
+const loveText=document.getElementById('loveText');
+
+let count=0;
+const maxClicks=24;
+
+let scale=.35;
+const maxScale=1.6;
+const step=(maxScale-scale)/maxClicks;
+
+heart.style.setProperty('--scale',scale);
+
+music.volume=0.5;
+
+/* ACTIVAR MUSICA */
+
+document.addEventListener('click',()=>{
+  if(music.paused){
+    music.play().catch(()=>{});
+  }
+},{once:true});
+
+/* NOCHE */
+
+nightBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('night');
+});
+
+/* FOTO */
+
+photoCard.addEventListener('click',()=>{
+  photoCard.classList.toggle('flip');
+});
+
+/* CORAZON */
+
+heart.addEventListener('click',()=>{
+
+  if(count>=maxClicks) return;
+
+  count++;
+  countText.textContent=count;
+
+  scale+=step;
+  heart.style.setProperty('--scale',scale.toFixed(3));
+
+  createFloatingHeart();
+
+  if(count>=maxClicks) explodeHeart();
+});
+
+function explodeHeart(){
+
+  heart.classList.add('explode');
+
+  setTimeout(()=>{
+    showFinal();
+    startFallingHearts();
+    typeText();
+  },900);
+}
+
+function showFinal(){
+  startScreen.style.display='none';
+  finalScreen.style.display='flex';
+}
+
+/* TEXTO ESCRIBIENDO */
+
+const message=`Gracias por estar conmigo, por tu apoyo, tu paciencia
+y por hacer mis días más felices.
+Cada momento contigo es un regalo.
+Te amo con todo mi corazón 💖`;
+
+let i=0;
+
+function typeText(){
+
+  if(i<message.length){
+
+    loveText.textContent+=message.charAt(i);
+    i++;
+
+    setTimeout(typeText,40);
+  }
+}
+
+/* CORAZONES */
+
+function createFloatingHeart(){
+
+  const h=document.createElement('div');
+  h.classList.add('floating-heart');
+  h.textContent='❤️';
+
+  h.style.left=Math.random()*100+'vw';
+  h.style.bottom='0px';
+
+  document.body.appendChild(h);
+
+  setTimeout(()=>h.remove(),4000);
+}
+
+function startFallingHearts(){
+
+  const interval=setInterval(()=>{
+
+    const h=document.createElement('div');
+    h.classList.add('falling-heart');
+    h.textContent='💖';
+
+    h.style.left=Math.random()*100+'vw';
+
+    document.body.appendChild(h);
+
+    setTimeout(()=>h.remove(),5000);
+
+  },160);
+
+  setTimeout(()=>clearInterval(interval),12000);
+}
+
+</script>
+
+</body>
+</html>
